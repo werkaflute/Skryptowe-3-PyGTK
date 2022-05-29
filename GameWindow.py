@@ -16,19 +16,15 @@ class GameWindow(Gtk.Window):
         self.set_size_request(1300, 800)
         self.connect('key-press-event', self.on_key_press)
 
-
-    # initialize the Gui
     def init_ui(self):
         self.field = Gtk.DrawingArea()
         self.field.connect("draw", self.on_draw)
-        #self.field.set_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         self.field.queue_draw()
         self.add(self.field)
         self.init_timeout()
         self.connect("delete-event", Gtk.main_quit)
         self.show_all()
 
-    # draws the field
     def on_draw(self, wid, cr):
         self.draw_game_elements(cr)
         self.draw_game_info_elements(cr)
@@ -55,7 +51,7 @@ class GameWindow(Gtk.Window):
     def draw_game_info_elements(self, cr):
         cr.select_font_face("Purisa", cairo.FONT_SLANT_NORMAL,
                             cairo.FONT_WEIGHT_NORMAL)
-        cr.set_font_size(32)
+        cr.set_font_size(28)
         if self.game.game_level.show_game_over == True:
             cr.move_to(300, 400)
             cr.show_text("Koniec gry")
