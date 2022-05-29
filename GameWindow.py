@@ -52,17 +52,18 @@ class GameWindow(Gtk.Window):
         cr.select_font_face("Purisa", cairo.FONT_SLANT_NORMAL,
                             cairo.FONT_WEIGHT_NORMAL)
         cr.set_font_size(28)
-        if self.game.game_level.show_game_over == True:
-            cr.move_to(300, 400)
-            cr.show_text("Koniec gry")
+        if self.game.game_level.hide_game_elements == False:
+            cr.move_to(850, 320)
+            cr.show_text("Poziom: " + str(self.game.game_level.level_number))
+            cr.move_to(850, 380)
+            cr.show_text("Ilość żyć: " + str(self.game.game_level.lifes))
+            cr.move_to(850, 440)
+            cr.show_text("Zdobyte punkty: " + str(self.game.game_level.score_points))
+            cr.stroke()
 
-        cr.move_to(850, 320)
-        cr.show_text("Poziom: " + str(self.game.game_level.level_number))
-        cr.move_to(850, 380)
-        cr.show_text("Ilość żyć: " + str(self.game.game_level.lifes))
-        cr.move_to(850, 440)
-        cr.show_text("Zdobyte punkty: " + str(self.game.game_level.score_points))
-        cr.stroke()
+        if self.game.game_level.show_game_over == True:
+            cr.move_to(500, 400)
+            cr.show_text("Koniec gry")
 
     def init_timeout(self):
         GLib.timeout_add(40, self.on_timeout, None)
@@ -79,10 +80,14 @@ class GameWindow(Gtk.Window):
     def on_key_press(self, widget, event):
         keyname = Gdk.keyval_name(event.keyval)
         if keyname == 'Left':
-            self.game.game_level.block.move_block(-1)
-            self.field.queue_draw()
-            self.add(self.field)
+            direction = -1
+            if self.game.game_level.block.x > 30:
+                self.game.game_level.block.move_block(direction)
+                self.field.queue_draw()
+                self.add(self.field)
         if keyname == 'Right':
-            self.game.game_level.block.move_block(1)
-            self.field.queue_draw()
-            self.add(self.field)
+            direction = 1
+            if self.game.game_level.block.x < 680:
+                self.game.game_level.block.move_block(direction)
+                self.field.queue_draw()
+                self.add(self.field)

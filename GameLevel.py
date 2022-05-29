@@ -35,7 +35,7 @@ class GameLevel:
         brick_collision = False
         index = -1
         edge = 0
-        if len(self.brick_list.bricks) == 48:
+        if len(self.brick_list.bricks) == 0:
             if self.level_number == 1:
                 self.level_2 = True
             else:
