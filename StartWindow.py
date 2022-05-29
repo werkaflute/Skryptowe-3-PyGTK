@@ -13,9 +13,8 @@ class StartWindow(Gtk.Window):
     def __init__(self):
         super(StartWindow, self).__init__()
         self.set_title("Brick Breaker")
-        self.set_size_request(800, 800)
+        self.set_size_request(1300, 800)
         self.create_menu_bar()
-        self.show_game_window_flag = True
 
     def create_menu_bar(self):
         self.vbox = Gtk.VBox(False, 1)
@@ -50,12 +49,10 @@ class StartWindow(Gtk.Window):
         self.vbox.pack_start(menu_bar, False, False, 0)
 
     def show_game_window(self, _):
-        if self.show_game_window_flag == True:
-            self.show_game_window_flag = False
-            self.game_window = GameWindow()
-            self.game_window.connect("delete-event", Gtk.main_quit)
-            self.game_window.show_all()
-            Gtk.main()
+        self.game_window = GameWindow()
+        self.game_window.connect("delete-event", Gtk.main_quit)
+        self.game_window.show_all()
+        Gtk.main()
 
 
     def show_additional_info_box(self, _):

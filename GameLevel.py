@@ -5,17 +5,23 @@ from gi.repository import Gtk
 
 from Block import Block
 from Ball import Ball
+from Brick import BrickList
+import math
 
 
 class GameLevel:
     def __init__(self, level_number):
         self.ball = None
         self.block = None
+        self.brick_list = None
+        self.level_2 = False
+        self.level_number = level_number
         self.create_game_elements()
 
     def create_game_elements(self):
         self.block = Block(300, 600, 100, 20)
-        self.ball = Ball(320, 570, 24, 24)
+        self.ball = Ball(320, 570, 12)
+        self.brick_list = BrickList(self.level_number)
 
     def start_game(self):
         self.move_ball()
@@ -24,7 +30,7 @@ class GameLevel:
         self.ball.start_move()
 
     def detect_collision(self, ball, rectangle):
-        radius = ball.width / 2
+        radius = ball.radius
         cx = ball.x + radius
         cy = ball.y + radius
         testX = cx

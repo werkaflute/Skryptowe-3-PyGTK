@@ -6,27 +6,26 @@ from gi.repository import Gtk, Gdk
 
 
 class Ball:
-    def __init__(self, x, y, width, height):
+    def __init__(self, x, y, radius):
         self.x = x
         self.y = y
-        self.width = width
-        self.height = height
+        self.radius = radius
         if random.randint(0, 1) == 1:
-            self.x_speed = 10
+            self.x_speed = 20
         else:
-            self.x_speed = -10
-        self.y_speed = -10
+            self.x_speed = -20
+        self.y_speed = -20
         self.ball_under_board = False
 
     def start_move(self):
         self.x += self.x_speed
         self.y += self.y_speed
-        if self.x <= 5:
+        if self.x - self.radius <= 5:
             self.x_speed = -self.x_speed
-        if self.y <= 5 :
+        if self.y <= 0:
             self.y_speed = -self.y_speed
-        if self.x > 780:
+        if self.x + self.radius > 790:
             self.x_speed = -self.x_speed
             self.y_speed = self.y_speed
-        if self.y > 800:
+        if self.y + self.radius > 800:
             self.ball_under_board = True
