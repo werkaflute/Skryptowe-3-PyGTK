@@ -22,7 +22,7 @@ class Ball:
         self.y += self.y_speed
         if self.x - self.radius <= 5:
             self.x_speed = -self.x_speed
-        if self.y <= 0:
+        if self.y <= 12:
             self.y_speed = -self.y_speed
         if self.x + self.radius > 790:
             self.x_speed = -self.x_speed
