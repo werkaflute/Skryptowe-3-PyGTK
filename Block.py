@@ -13,6 +13,6 @@ class Block:
 
     def move_block(self, direction):
         if direction == -1:
-            self.x -=30
+            self.x -= 30
         if direction == 1:
-            self.x +=30
+            self.x += 30

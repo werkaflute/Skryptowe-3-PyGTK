@@ -11,10 +11,10 @@ class Ball:
         self.y = y
         self.radius = radius
         if random.randint(0, 1) == 1:
-            self.x_speed = 20
+            self.x_speed = 10
         else:
-            self.x_speed = -20
-        self.y_speed = -20
+            self.x_speed = -10
+        self.y_speed = -10
         self.ball_under_board = False
 
     def start_move(self):
